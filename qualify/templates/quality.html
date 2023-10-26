@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Coovitel calificar turno</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load static %}
+        <link rel="icon" href="static/images/logoup.png" type="image" />
+        <link rel="stylesheet" href="{% static 'styles.css' %}" type="text/css">
+    </head>
+    <body>
+        <main class="main">
+            <div class="title"></div>
+            <p class="text">Gracias por visitarnos, por favor califica nuestro servicio.</p>
+            <p class="text">Tus comentarios nos ayudarán a ser cada día mejores.</p>
+            <progress class="progress" max="100" value="0"></progress>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="container">
+                    <div class="date time active">
+                        <legend>El tiempo de espera fue:</legend>      
+                        <fieldset>
+                            <input class="input-time" type="radio" name="score_time" value="Muy rápido">Muy rápido<br>      
+                            <input class="input-time" type="radio" name="score_time" value="Rápido">Rápido<br>      
+                            <input class="input-time" type="radio" name="score_time" value="Normal">Normal<br>
+                            <input class="input-time" type="radio" name="score_time" value="Lento">Lento<br>      
+                            <input class="input-time" type="radio" name="score_time" value="Muy lento">Muy lento<br>      
+                            <br>
+                        </fieldset>    
+                    </div>
+                    <div class="date service">
+                        <legend>Como calificas el servico de tu asesor:</legend>      
+                        <fieldset>
+                            <input class="input-service" type="radio" name="score_service" value="Excelente">Excelente<br>      
+                            <input class="input-service" type="radio" name="score_service" value="Bueno">Bueno<br>      
+                            <input class="input-service" type="radio" name="score_service" value="Normal">Normal<br>
+                            <input class="input-service" type="radio" name="score_service" value="Regular">Regular<br>      
+                            <input class="input-service" type="radio" name="score_service" value="Malo">Malo<br>      
+                            <br>
+                        </fieldset>    
+                    </div>
+                    <div class="date attention">
+                        <legend>¿Tu solicitud fue atentida?</legend>      
+                        <fieldset class="field-atten">
+                            <input class="input-attention" type="radio" name="score_attention" value="Si">Si<br>      
+                            <input class="input-attention" type="radio" name="score_attention" value="No">No<br>      
+                            <br>
+                        </fieldset>    
+                    </div>
+                    <div class="date recomment">
+                        <legend>¿Recomendarías a Coovitel a un amigo o conocido?</legend>      
+                        <fieldset class="field-rec">
+                            <input class="input-recomment" type="radio" name="score_recomment" value="Si" required>Si<br>      
+                            <input class="input-recomment" type="radio" name="score_recomment" value="Tal vez" required>Tal vez<br>      
+                            <input class="input-recomment" type="radio" name="score_recomment" value="No" required>No<br>      
+                            <br>
+                        </fieldset>
+                    </div>
+                    <input class="button" type="submit" value="Enviar"> 
+                </div>
+            </form>        
+        </main>
+        <script src="{% static 'script.js' %}" async defer></script>
+    </body>
+</html>
