@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import viewsets
+from .serializer import QualitySerializer
 from .models import Quality
 import datetime
 
 
-def quality(request, cedula):
+def quality(request, cedula, id_turn):
     """"""
     date = datetime.date.today()
-    turn = Quality.objects.filter(cedula=cedula, date=date)
+    turn = Quality.objects.filter(cedula=cedula, date=date, id_turn=id_turn)
     if turn:
         return render(request, "test.html")
     else:
@@ -22,7 +25,8 @@ def quality(request, cedula):
                             score_attention=score_attention,
                             score_recomment=score_recomment,
                             time=time,
-                            date=date
+                            date=date,
+                            id_turn=id_turn
             )
             created.save()
             return redirect("thanks")
@@ -31,3 +35,10 @@ def quality(request, cedula):
 def thanks(request):
     """"""
     return render(request, "thanks.html")
+
+
+class ApiQuality(viewsets.ModelViewSet):
+    """"""
+    permission_classes = [IsAuthenticated]
+    serializer_class = QualitySerializer
+    queryset = Quality.objects.all()

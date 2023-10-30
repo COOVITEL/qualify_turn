@@ -20,7 +20,8 @@ class Quality(models.Model):
     score_recomment = models.CharField(max_length=100)
     time = models.DateTimeField()
     date = models.DateField()
+    id_turn = models.IntegerField()
 
     def __str__(self):
         """"""
-        return f"Qualify asesor with number C.C {self.c_c} {self.time}"
+        return f"Qualify asesor with number C.C {self.c_c} in date {self.time}"
